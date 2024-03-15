@@ -5,39 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ade4b8d-bf97-413c-9b5a-6c1658bb65e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/idle_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/idle_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/idle_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/idle_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jump_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jump_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jump_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/jump_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/run_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/run_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/run_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/run_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/run_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/run_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ex4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Platformer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/PepseGameManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/util/ColorSupplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/util/NoiseGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/Avatar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/Block.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/Sky.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/Terrain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/daynight/Night.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/daynight/Sun.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/daynight/SunHalo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pepse/world/trees/Flora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ex4.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +28,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2dGlLMsvb3tPAuL3kT4xakBBbE8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -70,7 +44,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Yan Nosrati/Desktop/DanoGameLAb/DanoGameLab.jar",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Aviv/University/Semester 3/OOP/DanoGameLab/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -87,6 +62,13 @@
       <recent name="C:\Users\Yan Nosrati\IdeaProjects\ex4" />
       <recent name="C:\Users\Yan Nosrati\IdeaProjects\ex4\src" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-11.0.21-corretto-11.0.21-f644763e9732-97de7592" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
