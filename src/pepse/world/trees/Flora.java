@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 public class Flora {
-    private static final float TREE_ABUNDANCE = 0.12f;
+    private static final float TREE_ABUNDANCE = 0.15f;
 
     private final Function<Float, Float> groundHeightCallback;
 

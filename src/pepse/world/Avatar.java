@@ -156,13 +156,16 @@ public class Avatar extends GameObject {
 
     private void updateEnergy() {
         switch(state) {
-            case MovementState.IDLE:
-                addEnergy(IDLE_ENERGY_GAIN);
+            case IDLE:
+                if (transform().getVelocity().y() == 0)
+                {
+                    addEnergy(IDLE_ENERGY_GAIN);
+                }
                 break;
-            case MovementState.RUN:
+            case RUN:
                 addEnergy(-RUN_ENERGY_LOSS);
                 break;
-            case MovementState.JUMP:
+            case JUMP:
                 addEnergy(-JUMP_ENERGY_LOSS);
                 break;
         }

@@ -18,15 +18,16 @@ public class Terrain {
 
     public static int groundHeightAtX0;
     private static final Color BASE_GROUND_COLOR =  new Color(212,123,74);
+    private static final int NOISE_FACTOR_MODIFIER = 7;
     private final NoiseGenerator noiseGenerator;
     public Terrain(Vector2 windowDimensions, int seed) {
         groundHeightAtX0 = (int)((windowDimensions.y()*2)/3);
-        noiseGenerator = new NoiseGenerator(1234,groundHeightAtX0);
+        noiseGenerator = new NoiseGenerator(seed, groundHeightAtX0);
     }
 
     public float groundHeightAt(float x) {
-                float noise = (float) noiseGenerator.noise(x, BLOCK_SIZE *7);
-               return groundHeightAtX0 + noise;
+        float noise = (float) noiseGenerator.noise(x, BLOCK_SIZE * NOISE_FACTOR_MODIFIER);
+        return groundHeightAtX0 + noise;
     }
 
     public List<Block> createInRange(int minX, int maxX) {
