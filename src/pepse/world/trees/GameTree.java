@@ -71,7 +71,7 @@ public class GameTree {
         Vector2 leafSize = Vector2.ONES.mult(Block.BLOCK_SIZE * LEAF_SIZE_IN_BLOCKS);
         Vector2 leafPosition = treeTop.add(Vector2.UP.mult(Block.BLOCK_SIZE * LEAF_CENTER_HEIGHT_OFFSET)).add(
                 new Vector2(Block.BLOCK_SIZE * x, Block.BLOCK_SIZE * y));
-        leaves.add(new GameObject(leafPosition, leafSize,
-                new RectangleRenderable(LEAF_BASE_COLOR)));
+        Leaf leaf = new Leaf(leafPosition, leafSize, new RectangleRenderable(LEAF_BASE_COLOR));
+        leaves.add(leaf);
     }
 }
