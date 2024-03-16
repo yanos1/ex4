@@ -104,6 +104,9 @@ public class PepseGameManager extends GameManager {
         Set<GameTree> trees = flora.createInRange(0, (int)windowController.getWindowDimensions().x());
         for (GameTree tree : trees) {
             gameObjects().addGameObject(tree.getTrunk(), Layer.STATIC_OBJECTS);
+            for (GameObject leaf : tree.getLeaves()) {
+                gameObjects().addGameObject(leaf, Layer.FOREGROUND);
+            }
         }
     }
 
