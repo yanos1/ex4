@@ -4,12 +4,11 @@ import danogl.util.Vector2;
 import pepse.world.Block;
 
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
 public class Flora {
-    private static final float TREE_ABUNDANCE = 0.1f;
+    private static final float TREE_ABUNDANCE = 0.12f;
 
     private final Function<Float, Float> groundHeightCallback;
 
@@ -17,11 +16,12 @@ public class Flora {
         this.groundHeightCallback = groundHeightCallback;
     }
 
-    public Set<Tree> createInRange(int minX, int maxX) {
-        Set<Tree> trees = new HashSet<>();
-        for(int x = minX + Block.BLOCK_SIZE; x < maxX; x += Block.BLOCK_SIZE) {
+    public Set<GameTree> createInRange(int minX, int maxX) {
+        Set<GameTree> trees = new HashSet<>();
+        for(float x = minX + Block.BLOCK_SIZE; x < maxX; x += Block.BLOCK_SIZE) {
             if (Math.random() < TREE_ABUNDANCE) {
-                trees.add(new Tree(new Vector2(x, groundHeightCallback.apply((float)x))));
+                trees.add(new GameTree(new Vector2(x, groundHeightCallback.apply(x))));
+                x += Block.BLOCK_SIZE * 2;
             }
         }
         return trees;

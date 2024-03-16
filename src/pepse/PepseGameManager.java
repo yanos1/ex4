@@ -2,6 +2,7 @@ package pepse;
 
 import danogl.GameManager;
 import danogl.GameObject;
+import danogl.collisions.GameObjectCollection;
 import danogl.collisions.Layer;
 import danogl.gui.ImageReader;
 import danogl.gui.SoundReader;
@@ -16,8 +17,11 @@ import pepse.world.Terrain;
 import pepse.world.daynight.Night;
 import pepse.world.daynight.Sun;
 import pepse.world.daynight.SunHalo;
+import pepse.world.trees.Flora;
+import pepse.world.trees.GameTree;
 
 import java.util.List;
+import java.util.Set;
 
 public class PepseGameManager extends GameManager {
     public static final int SEED = 10;
@@ -53,9 +57,11 @@ public class PepseGameManager extends GameManager {
 
         initializeSun();
 
+        initializeFlora();
+
         this.avatar = createAvatar();
 
-        createUI();
+        initializeUI();
     }
 
     private Terrain initializeTerrain() {
@@ -82,7 +88,7 @@ public class PepseGameManager extends GameManager {
         return avatar;
     }
 
-    private void createUI() {
+    private void initializeUI() {
         EnergyCounter energyCounter = new EnergyCounter();
         Vector2 energyCounterPosition =
                 new Vector2(0, windowController.getWindowDimensions().y() - EnergyCounter.COUNTER_SIZE.y())
@@ -91,6 +97,14 @@ public class PepseGameManager extends GameManager {
                 energyCounterPosition, (int) avatar.GetEnergy()));
 
         avatar.SetEnergyChangeCallback(energyCounter::updateCounter);
+    }
+
+    private void initializeFlora() {
+        Flora flora = new Flora(terrain::groundHeightAt);
+        Set<GameTree> trees = flora.createInRange(0, (int)windowController.getWindowDimensions().x());
+        for (GameTree tree : trees) {
+            gameObjects().addGameObject(tree.getTrunk(), Layer.STATIC_OBJECTS);
+        }
     }
 
     public static void main(String[] args) {

@@ -26,7 +26,7 @@ public class Avatar extends GameObject {
     public static final int SPRITE_HEIGHT = 50;
     private static final float VELOCITY_X = 400;
     private static final float VELOCITY_Y = -650;
-    private static final float GRAVITY = 600;
+    private static final float GRAVITY = 800;
     private static final float IDLE_ENERGY_GAIN = 1;
     private static final float RUN_ENERGY_LOSS = 0.5f;
     private static final float JUMP_ENERGY_LOSS = 10;
@@ -49,12 +49,12 @@ public class Avatar extends GameObject {
 
     /**
      * Constructor.
-     * @param pos Bottom right corner of character.
+     * @param bottomRightCorner Bottom right corner of character.
      * @param inputListener Game managers input listener to get user input.
      * @param imageReader Game managers image reader to get avatars sprites.
      */
-    public Avatar (Vector2 pos, UserInputListener inputListener, ImageReader imageReader) {
-        super(pos.subtract(new Vector2(SPRITE_WIDTH, SPRITE_HEIGHT)),
+    public Avatar (Vector2 bottomRightCorner, UserInputListener inputListener, ImageReader imageReader) {
+        super(bottomRightCorner.subtract(new Vector2(SPRITE_WIDTH, SPRITE_HEIGHT)),
                 new Vector2(SPRITE_WIDTH, SPRITE_HEIGHT),
                 imageReader.readImage(IDLE_SPRITE_FILES[0], false));
         physics().preventIntersectionsFromDirection(Vector2.ZERO);
