@@ -6,6 +6,7 @@ import danogl.gui.UserInputListener;
 import danogl.util.Vector2;
 
 import java.awt.event.KeyEvent;
+import java.util.function.Consumer;
 
 /**
  * Class of the simulations main playable character.
@@ -29,6 +30,8 @@ public class Avatar extends GameObject {
     private float energy;
     private MovementState state;
 
+    private Consumer<Integer> energyChangeCallback;
+
     /**
      * Constructor.
      * @param pos Bottom right corner of character.
@@ -43,6 +46,14 @@ public class Avatar extends GameObject {
         transform().setAccelerationY(GRAVITY);
         this.inputListener = inputListener;
         energy = MAX_ENERGY;
+    }
+
+    public void SetEnergyChangeCallback(Consumer<Integer> energyChangeCallback) {
+        this.energyChangeCallback = energyChangeCallback;
+    }
+
+    public float GetEnergy() {
+        return energy;
     }
 
     /**
@@ -103,11 +114,14 @@ public class Avatar extends GameObject {
                 energy = Math.min(MAX_ENERGY, energy + IDLE_ENERGY_GAIN);
                 break;
             case MovementState.RUN:
-                energy = Math.max(MIN_ENERGY, RUN_ENERGY_LOSS);
+                energy = Math.max(MIN_ENERGY, energy - RUN_ENERGY_LOSS);
                 break;
             case MovementState.JUMP:
-                energy -= Math.max(MIN_ENERGY, JUMP_ENERGY_LOSS);
+                energy = Math.max(MIN_ENERGY, energy - JUMP_ENERGY_LOSS);
                 break;
+        }
+        if (energyChangeCallback != null) {
+            energyChangeCallback.accept((int)energy);
         }
     }
 }
