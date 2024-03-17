@@ -42,6 +42,9 @@ public class Flora {
         return trees;
     }
 
+    /**
+     * applying the callbacks after the character jumped
+     */
     public void reactToCharacter() {
         for (GameTree tree : trees) {
             tree.rotateLeaves();

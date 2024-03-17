@@ -21,7 +21,7 @@ public class Sun {
     public static final int SUN_SIZE = 100;
     private static final String SUN_TAG = "sun";
     private static final float HALF = 0.5f;
-    public static final float FULL_SPIN = 360f;
+    private static final float FULL_SPIN = 360f;
 
     /**
      * creating the sun

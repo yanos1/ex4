@@ -1,0 +1,23 @@
+yan_won,aviv.goldstein
+318862968,322336116
+
+8.2.4.1
+We created the following classes in the "trees" package:
+Flora - responsible for creating the trees, call relevant functions when reacting to player
+GameTree - responsible for creating its components (trunk, leaves, fruits) and changing
+        their attributes when needed.
+Leaf - handles the logic of its own movement
+Fruit - calls the relevant functions upon collision.
+
+8.2.4.2
+We chose to design the trees in the following way:
+Each tree is made of multiple game objects. the trunk is a generic game object, and we have a special
+ class for fruits and for leaves that both extend GameObject, and handle their respective specific logic.
+At the end we decided to make the tree a GameObject as well, to accomodate for the fact that fruits need to
+disappear and reappear after a while. the tree gameobject isn't rendered,
+ but its update is called so i could attach scheduledTasks to it.
+
+ 8.2.4.3
+We used the observer design pattern to have fruits update anybody interested in its collisions.
+You could argue that the flora gameobject is a facade that
+ simplifies the way we create trees and react to the character.

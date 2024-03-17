@@ -8,7 +8,13 @@ import danogl.util.Vector2;
 
 import java.util.Random;
 
+/**
+ * class representing a leaf
+ */
 public class Leaf extends GameObject {
+    /**
+     * leaf tag
+     */
     public static final String TAG = "leaf";
     private static final float BREEZE_MIN_ROTATION = -10f;
     private static final float BREEZE_MAX_ROTATION = 10f;
@@ -31,7 +37,9 @@ public class Leaf extends GameObject {
         this.setTag(TAG);
         new ScheduledTask(this, rand.nextFloat() * BREEZE_MAX_DELAY, false, this::startBreeze);
     }
-
+    /*
+       doing breeze transition
+     */
     private void startBreeze() {
         new Transition<>(
             this, // the game object being changed
@@ -44,6 +52,9 @@ public class Leaf extends GameObject {
             null);
     }
 
+    /**
+     * rotating leaves with a transition
+     */
     public void rotate90Degrees() {
         new Transition<>(
             this, // the game object being changed

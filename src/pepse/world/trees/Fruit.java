@@ -9,7 +9,13 @@ import pepse.PepseGameManager;
 
 import java.util.function.Consumer;
 
+/**
+ * class representing fruit
+ */
 public class Fruit extends GameObject {
+    /**
+     * fruit tag
+     */
     public static final String TAG = "fruit";
     private static final float FRUIT_ENERGY = 10;
 
@@ -33,22 +39,45 @@ public class Fruit extends GameObject {
         this.setTag(TAG);
     }
 
+    /**
+     * setting callback
+     * @param onCollisionCallback the callback to set
+     */
     public void setCollisionCallback(Consumer<Float> onCollisionCallback) {
         this.onCollisionCallback = onCollisionCallback;
     }
 
+    /**
+     * removing object callback
+     * @param removeObjectCallback the callback to remove
+     */
     public void setRemoveObjectCallback(Consumer<GameObject> removeObjectCallback) {
         this.removeObjectCallback = removeObjectCallback;
     }
 
+    /**
+     * setting call back to an object
+     * @param addObjectCallback the callback to add
+     */
     public void setAddObjectCallback(Consumer<GameObject> addObjectCallback) {
         this.addObjectCallback = addObjectCallback;
     }
 
+    /**
+     * setting the parent
+     * @param parent the parent to set.
+     */
     public void setParent(GameObject parent) {
         this.parent = parent;
     }
 
+    /**
+     *
+     * @param other The GameObject with which a collision occurred.
+     * @param collision Information regarding this collision.
+     *                  A reasonable elastic behavior can be achieved with:
+     *                  setVelocity(getVelocity().flipped(collision.getNormal()));
+     */
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         super.onCollisionEnter(other, collision);

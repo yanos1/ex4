@@ -74,7 +74,8 @@ public class Terrain {
     creating the actual terrain with recangles.
      */
 
-    private static void createBlockForCurrentX(int bricksToCreateInX, float currentX, int normalizedHeight, List<Block> blocks) {
+    private static void createBlockForCurrentX(int bricksToCreateInX,
+                                               float currentX, int normalizedHeight, List<Block> blocks) {
         for(int i = 0; i < bricksToCreateInX; ++i){
             RectangleRenderable rectangleRenderable = new RectangleRenderable(ColorSupplier.approximateColor(
                     BASE_GROUND_COLOR));

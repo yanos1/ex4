@@ -8,10 +8,18 @@ import pepse.world.Terrain;
 
 import java.awt.*;
 
+/**
+ * representing the sun halo
+ */
 public class SunHalo {
 
-    public static final float SIZE_FACTOR = 2f;
+    private static final float SIZE_FACTOR = 2f;
 
+    /**
+     * creating the halo
+     * @param sun the sun to follow
+     * @return halo object
+     */
     public static GameObject create(GameObject sun) {
         GameObject sunHalo = new GameObject(
                 new Vector2(sun.getTopLeftCorner()), new Vector2(

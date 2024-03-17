@@ -29,9 +29,15 @@ import java.util.Set;
  * the game manager of the game.
  */
 public class PepseGameManager extends GameManager {
+    /**
+     * seed value
+     */
     public static final int SEED = 10;
+    /**
+     * day length
+     */
     public static final float DAY_LENGTH = 30f;
-    private static final int FRAMERATE = 60;
+    private static final int FRAMERATE = 61;
 
     private static final Vector2 ENERGY_COUNTER_PADDING = new Vector2(20, -20);
 
@@ -72,7 +78,8 @@ public class PepseGameManager extends GameManager {
 
         this.terrain = initializeTerrain();
 
-        gameObjects().addGameObject(Night.create(windowController.getWindowDimensions(), DAY_LENGTH/2),
+        gameObjects().addGameObject(Night.create(windowController.getWindowDimensions(),
+                        DAY_LENGTH/2),
                 Layer.DEFAULT);
 
         initializeSun();
@@ -88,7 +95,8 @@ public class PepseGameManager extends GameManager {
      */
     private Terrain initializeTerrain() {
         Terrain terrain = new Terrain(windowController.getWindowDimensions(), SEED);
-        List<Block> blocks = terrain.createInRange(Block.BLOCK_SIZE,(int)windowController.getWindowDimensions().x());
+        List<Block> blocks = terrain.createInRange(Block.BLOCK_SIZE,
+                (int)windowController.getWindowDimensions().x());
         for (Block block : blocks) {
             gameObjects().addGameObject(block,Layer.STATIC_OBJECTS);
         }
@@ -119,7 +127,8 @@ initialize UI
     private void initializeUI() {
         EnergyCounter energyCounter = new EnergyCounter();
         Vector2 energyCounterPosition =
-                new Vector2(0, windowController.getWindowDimensions().y() - EnergyCounter.COUNTER_SIZE.y())
+                new Vector2(0, windowController.getWindowDimensions().y() -
+                        EnergyCounter.COUNTER_SIZE.y())
                         .add(ENERGY_COUNTER_PADDING);
         gameObjects().addGameObject(energyCounter.createCounter(
                 energyCounterPosition, (int) avatar.GetEnergy()));
