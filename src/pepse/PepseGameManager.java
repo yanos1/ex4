@@ -28,7 +28,8 @@ import java.util.Set;
 public class PepseGameManager extends GameManager {
     public static final int SEED = 10;
     public static final float DAY_LENGTH = 30f;
-    public static final Vector2 ENERGY_COUNTER_PADDING = new Vector2(20, -20);
+    private static final int FRAMERATE = 60;
+    private static final Vector2 ENERGY_COUNTER_PADDING = new Vector2(20, -20);
 
     private ImageReader imageReader;
     private SoundReader soundReader;
@@ -44,6 +45,7 @@ public class PepseGameManager extends GameManager {
                                UserInputListener inputListener,
                                WindowController windowController) {
         super.initializeGame(imageReader,soundReader,inputListener,windowController);
+        windowController.setTargetFramerate(FRAMERATE);
 
         this.imageReader = imageReader;
         this.soundReader = soundReader;
