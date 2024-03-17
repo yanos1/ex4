@@ -43,4 +43,16 @@ public class Leaf extends GameObject {
             Transition.TransitionType.TRANSITION_BACK_AND_FORTH, // Choose appropriate ENUM value
             null);
     }
+
+    public void rotate90Degrees() {
+        new Transition<>(
+            this, // the game object being changed
+            this.renderer()::setRenderableAngle, // the method to call
+            0f, // initial transition value
+            90f, // final transition value
+            Transition.CUBIC_INTERPOLATOR_FLOAT,// use a cubic interpolator
+            BREEZE_CYCLE_DURATION, // transition fully over half a day
+            Transition.TransitionType.TRANSITION_ONCE, // Choose appropriate ENUM value
+            null);
+    }
 }

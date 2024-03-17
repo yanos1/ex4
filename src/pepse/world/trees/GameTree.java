@@ -25,8 +25,12 @@ public class GameTree extends GameObject {
     private static final float LEAF_SIZE_IN_BLOCKS = 0.8f;
     private static final int FOLIAGE_CENTER_HEIGHT_OFFSET = 2;
     private static final float FRUIT_DENSITY = 0.3f;
-    private static final Color FRUIT_BASE_COLOR = new Color(255, 55, 55);
+    private static final Color FRUIT_BASE_COLOR = new Color(200, 55, 55);
     private static final float FRUIT_SIZE_IN_BLOCKS = 0.7f;
+    private static final int COLOR_VARIATION = 61;
+    private static final int COLOR_VARIATION_OFFSET = 30;
+    private static final int MAX_COLOR_VALUE = 255;
+    private static final int MIN_COLOR_VALUE = 0;
 
     private GameObject trunk;
     private final List<Leaf> leaves = new ArrayList<>();
@@ -99,5 +103,33 @@ public class GameTree extends GameObject {
         Fruit fruit = new Fruit(fruitPosition, fruitSize, new OvalRenderable(FRUIT_BASE_COLOR));
         fruit.setParent(this);
         fruits.add(fruit);
+    }
+
+    public void rotateLeaves() {
+        for (Leaf leaf : leaves) {
+            leaf.rotate90Degrees();
+        }
+    }
+
+    public void changeFruitColor() {
+        for (Fruit fruit : fruits) {
+            fruit.renderer().setRenderable(new OvalRenderable(generateColorVariation(FRUIT_BASE_COLOR)));
+        }
+    }
+
+    public void changeTrunkColor() {
+        trunk.renderer().setRenderable(new RectangleRenderable(generateColorVariation(TRUNK_BASE_COLOR)));
+    }
+
+    private Color generateColorVariation(Color baseColor) {
+        return new Color(
+                generateColorAxisVariation(baseColor.getRed()),
+                generateColorAxisVariation(baseColor.getGreen()),
+                generateColorAxisVariation(baseColor.getBlue()));
+    }
+
+    private int generateColorAxisVariation(int colorAxis) {
+        return Math.min(MAX_COLOR_VALUE, Math.max(MIN_COLOR_VALUE,
+                colorAxis + rand.nextInt(COLOR_VARIATION) - COLOR_VARIATION_OFFSET));
     }
 }

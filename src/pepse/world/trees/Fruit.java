@@ -5,6 +5,7 @@ import danogl.collisions.Collision;
 import danogl.components.ScheduledTask;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
+import pepse.PepseGameManager;
 
 import java.util.function.Consumer;
 
@@ -56,7 +57,8 @@ public class Fruit extends GameObject {
         }
         if(addObjectCallback != null && removeObjectCallback != null) {
             removeObjectCallback.accept(this);
-            new ScheduledTask(parent, 1, false, () -> addObjectCallback.accept(this));
+            new ScheduledTask(parent, PepseGameManager.DAY_LENGTH, false,
+                    () -> addObjectCallback.accept(this));
         }
     }
 }

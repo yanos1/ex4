@@ -12,12 +12,14 @@ public class Flora {
 
     private final Function<Float, Float> groundHeightCallback;
 
+    private Set<GameTree> trees;
+
     public Flora(Function<Float, Float> groundHeightCallback) {
         this.groundHeightCallback = groundHeightCallback;
     }
 
     public Set<GameTree> createInRange(int minX, int maxX) {
-        Set<GameTree> trees = new HashSet<>();
+        trees = new HashSet<>();
         for(float x = minX + Block.BLOCK_SIZE; x < maxX; x += Block.BLOCK_SIZE) {
             if (Math.random() < TREE_DENSITY) {
                 trees.add(new GameTree(new Vector2(x, groundHeightCallback.apply(x))));
@@ -25,5 +27,13 @@ public class Flora {
             }
         }
         return trees;
+    }
+
+    public void reactToCharacter() {
+        for (GameTree tree : trees) {
+            tree.rotateLeaves();
+            tree.changeFruitColor();
+            tree.changeTrunkColor();
+        }
     }
 }

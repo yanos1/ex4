@@ -103,6 +103,7 @@ public class PepseGameManager extends GameManager {
 
     private void initializeFlora() {
         Flora flora = new Flora(terrain::groundHeightAt);
+        avatar.addJumpCallback(flora::reactToCharacter);
         Set<GameTree> trees = flora.createInRange(0, (int)windowController.getWindowDimensions().x());
         for (GameTree tree : trees) {
             gameObjects().addGameObject(tree);
