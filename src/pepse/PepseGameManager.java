@@ -25,10 +25,14 @@ import pepse.world.trees.Leaf;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * the game manager of the game.
+ */
 public class PepseGameManager extends GameManager {
     public static final int SEED = 10;
     public static final float DAY_LENGTH = 30f;
     private static final int FRAMERATE = 60;
+
     private static final Vector2 ENERGY_COUNTER_PADDING = new Vector2(20, -20);
 
     private ImageReader imageReader;
@@ -39,6 +43,18 @@ public class PepseGameManager extends GameManager {
     private Terrain terrain;
     private Avatar avatar;
 
+    /**
+     * initlizing game
+     * @param imageReader Contains a single method: readImage, which reads an image from disk.
+     *                 See its documentation for help.
+     * @param soundReader Contains a single method: readSound, which reads a wav file from
+     *                    disk. See its documentation for help.
+     * @param inputListener Contains a single method: isKeyPressed, which returns whether
+     *                      a given key is currently pressed by the user or not. See its
+     *                      documentation.
+     * @param windowController Contains an array of helpful, self explanatory methods
+     *                         concerning the window.
+     */
     @Override
     public void initializeGame(ImageReader imageReader,
                                SoundReader soundReader,
@@ -67,7 +83,9 @@ public class PepseGameManager extends GameManager {
 
         initializeFlora();
     }
-
+    /*
+    initilize terrain
+     */
     private Terrain initializeTerrain() {
         Terrain terrain = new Terrain(windowController.getWindowDimensions(), SEED);
         List<Block> blocks = terrain.createInRange(Block.BLOCK_SIZE,(int)windowController.getWindowDimensions().x());
@@ -76,13 +94,17 @@ public class PepseGameManager extends GameManager {
         }
         return terrain;
     }
-
+/*
+initialize sun
+ */
     private void initializeSun() {
         GameObject sun = Sun.create(windowController.getWindowDimensions(),DAY_LENGTH);
         gameObjects().addGameObject(sun,Layer.BACKGROUND);
         gameObjects().addGameObject(SunHalo.create(sun), Layer.BACKGROUND);
     }
-
+/*
+initialize avatar
+ */
     private Avatar createAvatar() {
         float avatarXPosition = windowController.getWindowDimensions().x() / 2;
         float avatarYPosition = terrain.groundHeightAt(avatarXPosition);
@@ -91,7 +113,9 @@ public class PepseGameManager extends GameManager {
         gameObjects().addGameObject(avatar);
         return avatar;
     }
-
+/*
+initialize UI
+ */
     private void initializeUI() {
         EnergyCounter energyCounter = new EnergyCounter();
         Vector2 energyCounterPosition =
@@ -102,7 +126,9 @@ public class PepseGameManager extends GameManager {
 
         avatar.SetEnergyChangeCallback(energyCounter::updateCounter);
     }
-
+/*
+initialize flora
+ */
     private void initializeFlora() {
         Flora flora = new Flora(terrain::groundHeightAt);
         avatar.addJumpCallback(flora::reactToCharacter);
@@ -137,6 +163,10 @@ public class PepseGameManager extends GameManager {
         }
     }
 
+    /**
+     * running the game
+     * @param args not used.
+     */
     public static void main(String[] args) {
         new PepseGameManager().run();
     }

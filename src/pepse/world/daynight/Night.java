@@ -9,11 +9,20 @@ import danogl.util.Vector2;
 
 import java.awt.*;
 
+/**
+ * This class represents Night in the game.
+ */
 public class Night {
 
-    public static final String NIGHT_TAG = "night";
+    private static final String NIGHT_TAG = "night";
     private static final Float MIDNIGHT_OPACITY = 0.5f;
 
+    /**
+     * Creating night and day
+     * @param windowDimensions the game dimentions
+     * @param cycleLength the length of 1 day and 1 night
+     * @return te night game object.
+     */
     public static GameObject create(Vector2 windowDimensions, float cycleLength) {
         GameObject night = new GameObject(
                 Vector2.ZERO, windowDimensions,

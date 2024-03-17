@@ -12,8 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * representing a tree
+ */
 public class GameTree extends GameObject {
     public static final String TRUNK_TAG = "trunk";
+
     private static final int TRUNK_MIN_HEIGHT = 5;
     private static final int TRUNK_MAX_HEIGHT = 10;
     private static final Color TRUNK_BASE_COLOR = new Color(100, 50, 20);
@@ -38,12 +42,20 @@ public class GameTree extends GameObject {
     private final Random rand = new Random();
     private Vector2 treeTop;
 
+    /**
+     * creating a tree
+     * @param bottomRightCorner the bottom right corner of the tree
+     */
     public GameTree(Vector2 bottomRightCorner) {
         super(bottomRightCorner, Vector2.ZERO, null);
         createTrunk(bottomRightCorner);
         createFoliage();
     }
 
+    /**
+     * return the trunk
+     * @return trunk
+     */
     public GameObject getTrunk() {
         return trunk;
     }

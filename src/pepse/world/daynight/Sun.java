@@ -11,12 +11,24 @@ import pepse.world.Terrain;
 import java.awt.*;
 import java.awt.geom.Area;
 
+/**
+ *  The class representing the sun
+ */
 public class Sun {
-
+    /**
+     * constant representing the sun size
+     */
     public static final int SUN_SIZE = 100;
     private static final String SUN_TAG = "sun";
-    public static final float HALF = 0.5f;
+    private static final float HALF = 0.5f;
+    public static final float FULL_SPIN = 360f;
 
+    /**
+     * creating the sun
+     * @param windowDimensions game dimensions
+     * @param cycleLength 1 day length
+     * @return the sun object
+     */
     public static GameObject create(Vector2 windowDimensions,
                                     float cycleLength) {
         GameObject sun = new GameObject(
@@ -35,7 +47,7 @@ public class Sun {
                                 .rotated(angle)
                                 .add(cycleCenter)), // the method to call
                 0f, // initial transition value
-                360f, // final transition value
+                FULL_SPIN, // final transition value
                 Transition.LINEAR_INTERPOLATOR_FLOAT,// use a cubic interpolator
                 cycleLength, // transition fully over half a day
                 Transition.TransitionType.TRANSITION_LOOP, // Choose appropriate ENUM value

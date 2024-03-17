@@ -15,14 +15,29 @@ import java.util.function.Consumer;
  * Class of the simulations main playable character.
  */
 public class Avatar extends GameObject {
+    /**
+     * idle sprites
+     */
     public static final String[] IDLE_SPRITE_FILES =
             {"assets/idle_0.png", "assets/idle_1.png", "assets/idle_2.png", "assets/idle_3.png"};
+    /**
+     * running sprites
+     */
     public static final String[] RUN_SPRITE_FILES =
             {"assets/run_0.png", "assets/run_1.png", "assets/run_2.png", "assets/run_3.png",
                     "assets/run_4.png", "assets/run_5.png"};
+    /**
+     * jumping sprites
+     */
     public static final String[] JUMP_SPRITE_FILES =
             {"assets/jump_0.png", "assets/jump_1.png", "assets/jump_2.png", "assets/jump_3.png"};
+    /**
+     * sprite width
+     */
     public static final int SPRITE_WIDTH = 50;
+    /**
+     * sprite Height
+     */
     public static final int SPRITE_HEIGHT = 50;
     private static final float VELOCITY_X = 400;
     private static final float VELOCITY_Y = -650;
@@ -72,14 +87,26 @@ public class Avatar extends GameObject {
                 JUMP_SPRITE_FILES, imageReader, false, TIME_BETWEEN_ANIMATIONS);
     }
 
+    /**
+     * set energy callback
+     * @param energyChangeCallback the callback to set
+     */
     public void SetEnergyChangeCallback(Consumer<Integer> energyChangeCallback) {
         this.energyChangeCallback = energyChangeCallback;
     }
 
+    /**
+     * get energy
+     * @return energy
+     */
     public float GetEnergy() {
         return energy;
     }
 
+    /**
+     * add energy
+     * @param amount energy amount
+     */
     public void addEnergy(float amount) {
         energy += amount;
         if (energy < MIN_ENERGY) {
@@ -94,6 +121,10 @@ public class Avatar extends GameObject {
         }
     }
 
+    /**
+     * adding action to jump
+     * @param callback the callback to add
+     */
     public void addJumpCallback(Runnable callback) {
         jumpCallbacks.add(callback);
     }
@@ -117,7 +148,9 @@ public class Avatar extends GameObject {
         updateEnergy();
         updateAnimation();
     }
-
+    /*
+    update running
+     */
     private void updateRunning() {
         if (energy < RUN_ENERGY_LOSS) {
             transform().setVelocityX(0);
@@ -138,7 +171,9 @@ public class Avatar extends GameObject {
         }
         transform().setVelocityX(xVel);
     }
-
+    /*
+    update jumping
+     */
     private void updateJumping() {
         if (energy < JUMP_ENERGY_LOSS) {
             return;
@@ -153,7 +188,9 @@ public class Avatar extends GameObject {
             }
         }
     }
-
+/*
+update energy
+ */
     private void updateEnergy() {
         switch(state) {
             case IDLE:
@@ -170,7 +207,9 @@ public class Avatar extends GameObject {
                 break;
         }
     }
-
+/*
+    update animation
+ */
     private void updateAnimation() {
         if (transform().getVelocity().x() != 0) {
             renderer().setRenderable(runAnimation);
