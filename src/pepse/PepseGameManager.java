@@ -2,8 +2,8 @@ package pepse;
 
 import danogl.GameManager;
 import danogl.GameObject;
-import danogl.collisions.GameObjectCollection;
 import danogl.collisions.Layer;
+import danogl.components.ScheduledTask;
 import danogl.gui.ImageReader;
 import danogl.gui.SoundReader;
 import danogl.gui.UserInputListener;
@@ -18,7 +18,9 @@ import pepse.world.daynight.Night;
 import pepse.world.daynight.Sun;
 import pepse.world.daynight.SunHalo;
 import pepse.world.trees.Flora;
+import pepse.world.trees.Fruit;
 import pepse.world.trees.GameTree;
+import pepse.world.trees.Leaf;
 
 import java.util.List;
 import java.util.Set;
@@ -57,11 +59,11 @@ public class PepseGameManager extends GameManager {
 
         initializeSun();
 
-        initializeFlora();
-
         this.avatar = createAvatar();
 
         initializeUI();
+
+        initializeFlora();
     }
 
     private Terrain initializeTerrain() {
@@ -103,10 +105,32 @@ public class PepseGameManager extends GameManager {
         Flora flora = new Flora(terrain::groundHeightAt);
         Set<GameTree> trees = flora.createInRange(0, (int)windowController.getWindowDimensions().x());
         for (GameTree tree : trees) {
-            gameObjects().addGameObject(tree.getTrunk(), Layer.STATIC_OBJECTS);
-            for (GameObject leaf : tree.getLeaves()) {
-                gameObjects().addGameObject(leaf, Layer.FOREGROUND);
+            gameObjects().addGameObject(tree);
+            gameObjects().addGameObject(tree.getTrunk(), getObjectLayerByTag(tree.getTrunk()));
+            for (Leaf leaf : tree.getLeaves()) {
+                gameObjects().addGameObject(leaf, getObjectLayerByTag(leaf));
             }
+            for (Fruit fruit : tree.getFruits()) {
+                fruit.setCollisionCallback(avatar::addEnergy);
+                fruit.setAddObjectCallback(gameObject ->
+                        gameObjects().addGameObject(gameObject, getObjectLayerByTag(gameObject)));
+                fruit.setRemoveObjectCallback(gameObject ->
+                        gameObjects().removeGameObject(gameObject, getObjectLayerByTag(gameObject)));
+                gameObjects().addGameObject(fruit, getObjectLayerByTag(fruit));
+            }
+        }
+    }
+
+    private int getObjectLayerByTag(GameObject gameObject) {
+        switch(gameObject.getTag()) {
+            case GameTree.TRUNK_TAG:
+                return Layer.STATIC_OBJECTS;
+            case Leaf.TAG:
+                return Layer.FOREGROUND;
+            case Fruit.TAG:
+                return Layer.STATIC_OBJECTS;
+            default:
+                return Layer.DEFAULT;
         }
     }
 

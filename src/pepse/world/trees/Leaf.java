@@ -9,12 +9,13 @@ import danogl.util.Vector2;
 import java.util.Random;
 
 public class Leaf extends GameObject {
+    public static final String TAG = "leaf";
     private static final float BREEZE_MIN_ROTATION = -10f;
-    private static final float BREEZE_MAX_ROTATION = 10cf;
+    private static final float BREEZE_MAX_ROTATION = 10f;
     private static final float BREEZE_CYCLE_DURATION = 2f;
     private static final float BREEZE_MAX_DELAY = 1.5f;
 
-    private Random rand = new Random();
+    private final Random rand = new Random();
 
     /**
      * Construct a new GameObject instance.
@@ -27,6 +28,7 @@ public class Leaf extends GameObject {
      */
     public Leaf(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable) {
         super(topLeftCorner, dimensions, renderable);
+        this.setTag(TAG);
         new ScheduledTask(this, rand.nextFloat() * BREEZE_MAX_DELAY, false, this::startBreeze);
     }
 
